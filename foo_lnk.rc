@@ -1,109 +1,44 @@
-//Microsoft Developer Studio generated resource script.
-//
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 2 resource.
-//
 #include "afxres.h"
-
-/////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
-/////////////////////////////////////////////////////////////////////////////
-// Deutsch (Deutschland) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
-#ifdef _WIN32
-LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+language LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
-#ifndef _MAC
-/////////////////////////////////////////////////////////////////////////////
-//
-// Version
-//
-
-VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
- FILEFLAGSMASK 0x3fL
+VS_VERSION_INFO versioninfo
+fileversion     NUM_FILE_MAJOR,    NUM_FILE_MINOR,    NUM_FILE_PATCH,    NUM_FILE_PRERELEASE
+productversion  NUM_PRODUCT_MAJOR, NUM_PRODUCT_MINOR, NUM_PRODUCT_PATCH, NUM_PRODUCT_PRERELEASE
+fileflagsmask   0x3FL
 #ifdef _DEBUG
- FILEFLAGS 0x1L
+fileflags       VS_FF_DEBUG
 #else
- FILEFLAGS 0x0L
+fileflags       0
 #endif
- FILEOS 0x40004L
- FILETYPE 0x2L
- FILESUBTYPE 0x0L
-BEGIN
-    BLOCK "StringFileInfo"
-    BEGIN
-        BLOCK "000004b0"
-        BEGIN
-            VALUE "Comments", "This is a foobar2000 component.\0"
-            VALUE "CompanyName", " \0"
-            VALUE "FileDescription", "Shell link support for foobar2000\0"
-            VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "foo_lnk\0"
-            VALUE "LegalCopyright", "Copyright © 2005 Holger Stenger\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "foo_lnk.dll\0"
-            VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "foo_lnk\0"
-            VALUE "ProductVersion", "1, 0, 0, 1\0"
-            VALUE "SpecialBuild", "\0"
-        END
-    END
-    BLOCK "VarFileInfo"
-    BEGIN
-        VALUE "Translation", 0x0, 1200
-    END
-END
+fileos          VOS_NT_WINDOWS32
+filetype        VFT_DLL
+filesubtype     VFT2_UNKNOWN
+{
+    block "StringFileInfo"
+    {
+        block "040904E4" // U.S. English, Multilingual character set
+        {
+            value "FileVersion",      STR_FILE_VERSION     "\0"
+            value "FileDescription",  STR_FILE_DESCRIPTION "\0"
+            value "LegalCopyright",   STR_COPYRIGHT        "\0"
+            value "LegalTrademarks",                       "\0"
+            value "Comments",         STR_COMMENTS         "\0"
+            value "CompanyName",      STR_COMPANY_NAME     "\0"
+            value "InternalName",     STR_INTERNAL_NAME    "\0"
+            value "OriginalFilename", STR_FILE_NAME        "\0"
+            value "ProductName",      STR_PRODUCT_NAME     "\0"
+            value "ProductVersion",   STR_PRODUCT_VERSION  "\0"
+        }
+    }
 
-#endif    // !_MAC
-
-
-#ifdef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// TEXTINCLUDE
-//
-
-1 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "resource.h\0"
-END
-
-2 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "#include ""afxres.h""\r\n"
-    "\0"
-END
-
-3 TEXTINCLUDE DISCARDABLE 
-BEGIN
-    "\r\n"
-    "\0"
-END
-
-#endif    // APSTUDIO_INVOKED
-
-#endif    // Deutsch (Deutschland) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-#ifndef APSTUDIO_INVOKED
-/////////////////////////////////////////////////////////////////////////////
-//
-// Generated from the TEXTINCLUDE 3 resource.
-//
-
-
-/////////////////////////////////////////////////////////////////////////////
-#endif    // not APSTUDIO_INVOKED
-
+    block "VarFileInfo"
+    {
+        value "Translation", 0x409, 1252    // U.S. English, Multilingual character set
+    }
+}

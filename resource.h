@@ -1,15 +1,38 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
-// Used by foo_lnk.rc
-//
 
-// Next default values for new objects
-// 
-#ifdef APSTUDIO_INVOKED
-#ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        101
-#define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1000
-#define _APS_NEXT_SYMED_VALUE           101
-#endif
-#endif
+/** $VER: Resource.h (2023.06.18) **/
+
+#pragma once
+
+#define TOSTRING_IMPL(x) #x
+#define TOSTRING(x) TOSTRING_IMPL(x)
+
+/** Component specific **/
+
+#define STR_COMPONENT_NAME      "Shell Link Resolver"
+#define STR_COMPONENT_VERSION   TOSTRING(NUM_FILE_MAJOR) "." TOSTRING(NUM_FILE_MINOR) "." TOSTRING(NUM_FILE_PATCH) "." TOSTRING(NUM_FILE_PRERELEASE)
+#define STR_COMPONENT_BASENAME  "foo_lnk"
+#define STR_COMPONENT_FILENAME  STR_COMPONENT_BASENAME ".dll"
+
+/** Generic **/
+
+#define STR_COMPANY_NAME        TEXT("")
+#define STR_INTERNAL_NAME       TEXT(STR_COMPONENT_NAME)
+#define STR_COMMENTS            TEXT("Supported by P. Stuer")
+#define STR_COPYRIGHT           TEXT("Copyright (c) 2005 Holger Stenger")
+
+#define NUM_FILE_MAJOR          1
+#define NUM_FILE_MINOR          3
+#define NUM_FILE_PATCH          2
+#define NUM_FILE_PRERELEASE     0
+
+#define STR_FILE_NAME           TEXT(STR_COMPONENT_FILENAME)
+#define STR_FILE_VERSION        TOSTRING(NUM_FILE_MAJOR) TEXT(".") TOSTRING(NUM_FILE_MINOR) TEXT(".") TOSTRING(NUM_FILE_PATCH) TEXT(".") TOSTRING(NUM_FILE_PRERELEASE)
+#define STR_FILE_DESCRIPTION    TEXT("Adds Shell link support to foobar2000")
+
+#define NUM_PRODUCT_MAJOR       1
+#define NUM_PRODUCT_MINOR       3
+#define NUM_PRODUCT_PATCH       2
+#define NUM_PRODUCT_PRERELEASE  0
+
+#define STR_PRODUCT_NAME        STR_COMPANY_NAME TEXT(" ") STR_INTERNAL_NAME
+#define STR_PRODUCT_VERSION     TOSTRING(NUM_PRODUCT_MAJOR) TEXT(".") TOSTRING(NUM_PRODUCT_MINOR) TEXT(".") TOSTRING(NUM_PRODUCT_PATCH) TEXT(".") TOSTRING(NUM_PRODUCT_PRERELEASE)
