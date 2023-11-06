@@ -1,5 +1,5 @@
 
-/** $VER: foo_lnk.cpp (2023.06.18) **/
+/** $VER: foo_lnk.cpp (2023.06.19) **/
 
 #include <CppCoreCheck/Warnings.h>
 
@@ -40,7 +40,7 @@ namespace
     DECLARE_FILE_TYPE("Shell Links", "*.LNK");
 }
 
-void uResolveLink(const char * linkfile, pfc::string_base & path, HWND hwnd = 0);
+void ResolveLink(const char * linkfile, pfc::string_base & path, HWND hwnd = 0);
 
 class LinkResolver : public link_resolver
 {
@@ -65,15 +65,15 @@ public:
         UNREFERENCED_PARAMETER(abortHandler);
 
         if (::stricmp_utf8_partial("file://", linkFilePath, 7) != 0)
-            throw exception_io_data(pfc::stringLite("shortcut is not on local filesystem:\n") + linkFilePath);
+            throw exception_io_data(pfc::string8("shortcut is not on local filesystem:\n") + linkFilePath);
 
         const char * LinkFilePath = linkFilePath + 7;
 
-        uResolveLink(LinkFilePath, targetFilePath);
+        ResolveLink(LinkFilePath, targetFilePath);
     }
 };
 
-void uResolveLink(const char * linkFilePath, pfc::string_base & filePath, HWND hWnd)
+static void ResolveLink(const char * linkFilePath, pfc::string_base & filePath, HWND hWnd)
 {
     filePath.reset();
 
@@ -81,8 +81,6 @@ void uResolveLink(const char * linkFilePath, pfc::string_base & filePath, HWND h
 
     // Get a pointer to the IShellLink interface (Unicode version). 
     pfc::com_ptr_t<IShellLinkW> pslw;
-
-    pfc::string8 ShortPath;
 
     HRESULT hResult = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID *) pslw.receive_ptr());
 
@@ -117,7 +115,7 @@ void uResolveLink(const char * linkFilePath, pfc::string_base & filePath, HWND h
         if (FAILED(hResult))
             throw exception_win32((DWORD)hResult);
 
-        ShortPath.set_string(pfc::stringcvt::string_utf8_from_wide(ShortPathArray));
+        filePath.set_string(pfc::stringcvt::string_utf8_from_wide(ShortPathArray));
     }
     else
     {
@@ -149,20 +147,17 @@ void uResolveLink(const char * linkFilePath, pfc::string_base & filePath, HWND h
         if (FAILED(hResult))
             throw exception_win32((DWORD)hResult);
 
-        char ShortPathArray[MAX_PATH];
+        char FilePathArray[MAX_PATH];
         WIN32_FIND_DATAA wfd = { 0 };
 
         // Get the path to the link target.
-        hResult = psla->GetPath(ShortPathArray, MAX_PATH, &wfd, 0);
+        hResult = psla->GetPath(FilePathArray, MAX_PATH, &wfd, 0);
 
         if (FAILED(hResult))
             throw exception_win32((DWORD)hResult);
 
-        ShortPath.set_string(pfc::stringcvt::string_utf8_from_ansi(ShortPathArray));
+        filePath.set_string(pfc::stringcvt::string_utf8_from_ansi(FilePathArray));
     }
-
-    if (uGetLongPathName(ShortPath, filePath) == 0)
-        filePath.set_string(ShortPath, ShortPath.length());
 }
 
 static service_factory_single_t<LinkResolver> _LinkResolverFactory;
@@ -175,16 +170,19 @@ public:
     {
         HRESULT hResult = ::CoInitialize(NULL);
 
-        _Initialized = !!SUCCEEDED(hResult);
+        _Initialized = SUCCEEDED(hResult);
 
-        if (FAILED(hResult))
+        if (!_Initialized)
             throw exception_win32((DWORD)hResult);
     }
 
     virtual void on_quit()
     {
         if (_Initialized)
+        {
             ::CoUninitialize();
+            _Initialized = false;
+        }
     }
 
 private:
